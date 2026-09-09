@@ -1,8 +1,8 @@
 const CONFIG = {
     productName: 'Domine a Sua Entrevista de Emprego — Curso e Método',
     price: '299 MT',
-    whatsappNumber: '',
-    checkoutUrl: '',
+    whatsappNumber: '258874449125',
+    checkoutUrl: 'https://entrevista.cursosmoz.shop/checkout',
     breakpoint: 700,
     modalCloseLabel: 'Fechar modal'
 };
@@ -48,14 +48,6 @@ book.addEventListener('pointermove', e => {
     book.style.transform = `translateY(-5px) rotateX(${y*-5}deg) rotateY(${x*7-4}deg)`
 });
 book.addEventListener('pointerleave', () => book.style.transform = '');
-$$('.magnetic').forEach(b => {
-    b.addEventListener('pointermove', e => {
-    const r = b.getBoundingClientRect();
-    b.style.transform =
-        `translate(${(e.clientX-r.left-r.width/2)*.055}px,${(e.clientY-r.top-r.height/2)*.055-3}px)`
-    });
-    b.addEventListener('pointerleave', () => b.style.transform = '')
-});
 $$('.faq-btn').forEach(btn => btn.addEventListener('click', () => {
     const item = btn.parentElement,
     a = $('.answer', item),
