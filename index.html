@@ -29,24 +29,26 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Domine a Sua Entrevista de Emprego",
-  "url": "./"
-}
-</script>
-<script type="application/ld+json">{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Domine a Sua Entrevista",
-  "url": "./",
-  "logo": "capa-ebook.png"
-}
-</script>
+
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Domine a Sua Entrevista de Emprego",
+    "url": "./"
+    }
+  </script>
+  <script type="application/ld+json">{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Domine a Sua Entrevista",
+    "url": "./",
+    "logo": "capa-ebook.png"
+    }
+  </script>
 </head>
 
 <body>
+    
   <div class="noise"></div>
   <div id="cursor"></div>
   <header id="header">
@@ -86,6 +88,36 @@
         <div class="stat"><strong>35</strong><span>erros fatais a evitar no currículo</span></div>
       </div>
     </div>
+    <div class="stats">
+        <div class="stat"><span>software secreto para elaborar o seu CV e ser chamado varias entrevistas</span></div>
+    </div>
+
+    <section class="section" id="testemunhos">
+      <div class="container">
+        <div class="section-head reveal" style="max-width:820px">
+          <div class="kicker">Experiências reais</div>
+          <h2>Quando a preparação muda, a forma de chegar à entrevista também muda.</h2>
+          <p class="intro">Alguns testemunhos dos nossos alunos.</p>
+        </div>
+        <div class="shots reveal">
+          <div class="shots-stage" id="shotsStage">
+            <button class="shots-nav prev" id="shotsPrev" aria-label="Testemunho anterior">‹</button>
+            <div class="shot" data-index="0"><img src="testemunho-1.jpg" alt="Testemunho 1" loading="lazy"></div>
+            <div class="shot" data-index="1"><img src="testemunho-2.jpg" alt="Testemunho 2" loading="lazy"></div>
+            <div class="shot" data-index="2"><img src="testemunho-3.jpg" alt="Testemunho 3" loading="lazy"></div>
+            <div class="shot" data-index="3"><img src="testemunho-4.jpg" alt="Testemunho 4" loading="lazy"></div>
+            <div class="shot" data-index="4"><img src="testemunho-5.jpg" alt="Testemunho 5" loading="lazy"></div>
+            <button class="shots-nav next" id="shotsNext" aria-label="Próximo testemunho">›</button>
+          </div>
+          <div class="shots-dots" id="shotsDots"></div>
+        </div>
+        <div class="testimonial-foot reveal">
+          <strong>Não compre apenas motivação. Compre preparação.</strong>
+          <span>O método foi concebido para transformar uma entrevista de emprego de um momento de improviso num processo que pode preparar, praticar e repetir.</span>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="conteudo">
       <div class="container">
         <div class="section-head reveal">
@@ -253,39 +285,6 @@
       </div>
     </section>
 
-    <section class="section" id="testemunhos">
-      <div class="container">
-        <div class="section-head reveal" style="max-width:820px">
-          <div class="kicker">Experiências reais</div>
-          <h2>Quando a preparação muda, a forma de chegar à entrevista também muda.</h2>
-          <p class="intro">Alguns testemunhos dos nossos alunos.</p>
-        </div>
-        <div class="testimonials reveal stagger">
-          <article class="testimonial">
-            <div class="quote-mark">“</div>
-            <p>Quando saí da faculdade, fui a melhor aluna do meu curso e mesmo assim terminei sem conseguir um emprego. Enviava currículos e nunca era respondida. Quando conseguia uma entrevista, chegava lá nervosa e não sabia responder às perguntas.</p>
-            <p>Depois de aprender o método, comecei a receber vários e-mails de resposta para entrevistas e foi assim que recebi <strong>7 propostas de emprego</strong>.</p>
-            <div class="person">
-              <div class="avatar">AM</div>
-              <div><strong>Angela Matsinhe</strong><span>Formada em Contabilidade pelo ISCAM · Actualmente no Millennium Bim</span></div>
-            </div>
-          </article>
-          <article class="testimonial">
-            <div class="quote-mark">“</div>
-            <p>Eu sempre conseguia chegar às entrevistas, mas falhava na hora H. Chegava nervoso, não sabia bem o que responder e gaguejava. Decidi experimentar o método da Dra. Nércia Modlane.</p>
-            <p>Segui os métodos para fazer o meu CV, submeti candidaturas e recebi um e-mail para uma entrevista na Deloitte. Preparei-me exactamente como fui ensinado e consegui o emprego.</p>
-            <div class="person">
-              <div class="avatar">IC</div>
-              <div><strong>Ivan Cumbe</strong><span>Profissional da Deloitte · Experiência anterior no Standard Bank</span></div>
-            </div>
-          </article>
-        </div>
-        <div class="testimonial-foot reveal">
-          <strong>Não compre apenas motivação. Compre preparação.</strong>
-          <span>O método foi concebido para transformar uma entrevista de emprego de um momento de improviso num processo que pode preparar, praticar e repetir.</span>
-        </div>
-      </div>
-    </section>
     <section class="section" id="faq">
       <div class="container">
         <div class="section-head reveal" style="margin-inline:auto;text-align:center">
@@ -360,6 +359,15 @@
       <div>Curso e materiais de preparação profissional para procura de emprego.</div>
     </div>
   </footer>
+  <div class="shot-modal" id="shotModal" aria-hidden="true">
+    <button class="shot-modal-nav prev" id="shotModalPrev" aria-label="Testemunho anterior">‹</button>
+    <div class="shot-modal-frame">
+      <button class="shot-modal-close" id="shotModalClose" aria-label="Fechar">×</button>
+      <img id="shotModalImg" src="" alt="Testemunho em destaque">
+    </div>
+    <button class="shot-modal-nav next" id="shotModalNext" aria-label="Próximo testemunho">›</button>
+    <div class="shot-modal-count" id="shotModalCount"></div>
+  </div>
   <div class="mobile-buy">
     <div>
       <div class="mobile-price-label">Curso + materiais</div>
@@ -383,5 +391,6 @@
   </div>
 
   <script src="script.js" defer></script>
+
 </body>
 </html>

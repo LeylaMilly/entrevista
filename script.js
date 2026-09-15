@@ -1,6 +1,7 @@
+
 const CONFIG = {
     productName: 'Domine a Sua Entrevista de Emprego — Curso e Método',
-    price: '299 MT',
+    price: '197 MT',
     whatsappNumber: '258874449125',
     checkoutUrl: 'https://entrevista.cursosmoz.shop/checkout',
     breakpoint: 700,
@@ -48,6 +49,95 @@ book.addEventListener('pointermove', e => {
     book.style.transform = `translateY(-5px) rotateX(${y*-5}deg) rotateY(${x*7-4}deg)`
 });
 book.addEventListener('pointerleave', () => book.style.transform = '');
+(function initShots() {
+    const stage = $('#shotsStage');
+    if (!stage) return;
+    const items = $$('.shot', stage);
+    const dotsWrap = $('#shotsDots');
+    const total = items.length;
+    let current = 0;
+    let autoplayId = null;
+
+    items.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.setAttribute('aria-label', `Ir para testemunho ${i + 1}`);
+    dot.addEventListener('click', () => { goTo(i); restartAutoplay() });
+    dotsWrap.appendChild(dot);
+    });
+    const dots = $$('button', dotsWrap);
+
+    function layout() {
+    const narrow = window.innerWidth <= 700;
+    const spacing = narrow ? 108 : 168;
+    items.forEach((item, i) => {
+        let offset = i - current;
+        if (offset > total / 2) offset -= total;
+        if (offset < -total / 2) offset += total;
+        const abs = Math.abs(offset);
+        const scale = abs === 0 ? 1 : abs === 1 ? .78 : abs === 2 ? .6 : .45;
+        const opacity = abs === 0 ? 1 : abs === 1 ? .6 : abs === 2 ? .3 : 0;
+        const z = 10 - abs;
+        item.style.zIndex = z;
+        item.style.opacity = opacity;
+        item.style.pointerEvents = abs > 2 ? 'none' : 'auto';
+        item.style.transform = `translate(-50%,-50%) translateX(${offset * spacing}px) scale(${scale})`;
+        item.classList.toggle('is-active', offset === 0);
+    });
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === current));
+    }
+
+    function goTo(i) {
+    current = ((i % total) + total) % total;
+    layout();
+    if (modal.classList.contains('open')) showModal(current);
+    }
+    function next() { goTo(current + 1) }
+    function prev() { goTo(current - 1) }
+
+    items.forEach((item, i) => item.addEventListener('click', () => {
+    goTo(i);
+    showModal(i);
+    }));
+    $('#shotsPrev').addEventListener('click', () => { prev(); restartAutoplay() });
+    $('#shotsNext').addEventListener('click', () => { next(); restartAutoplay() });
+
+    function startAutoplay() { autoplayId = setInterval(next, 3200) }
+    function stopAutoplay() { clearInterval(autoplayId) }
+    function restartAutoplay() { stopAutoplay(); startAutoplay() }
+    stage.addEventListener('mouseenter', stopAutoplay);
+    stage.addEventListener('mouseleave', startAutoplay);
+
+    // Fullscreen modal that keeps advancing through the same carousel
+    const modal = $('#shotModal'), modalImg = $('#shotModalImg'), modalCount = $('#shotModalCount');
+    function showModal(i) {
+    const src = $('img', items[i]).getAttribute('src');
+    modalImg.setAttribute('src', src);
+    modalCount.textContent = `${i + 1} / ${total}`;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+    }
+    function closeModal() {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+    restartAutoplay();
+    }
+    $('#shotModalClose').addEventListener('click', closeModal);
+    $('#shotModalPrev').addEventListener('click', () => goTo(current - 1));
+    $('#shotModalNext').addEventListener('click', () => goTo(current + 1));
+    modal.addEventListener('click', e => { if (e.target === modal) closeModal() });
+    addEventListener('keydown', e => {
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft') goTo(current - 1);
+    });
+
+    addEventListener('resize', layout, { passive: true });
+    layout();
+    startAutoplay();
+})();
 $$('.faq-btn').forEach(btn => btn.addEventListener('click', () => {
     const item = btn.parentElement,
     a = $('.answer', item),
