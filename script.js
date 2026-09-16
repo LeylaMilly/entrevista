@@ -3,7 +3,7 @@ const CONFIG = {
     productName: 'Domine a Sua Entrevista de Emprego — Curso e Método',
     price: '197 MT',
     whatsappNumber: '258874449125',
-    checkoutUrl: 'https://entrevista.cursosmoz.shop/checkout',
+    checkoutUrl: 'https://pay.lojou.app/SFyjg',
     breakpoint: 700,
     modalCloseLabel: 'Fechar modal'
 };
